@@ -24,20 +24,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // CORS configuration
-const allowedOrigins = ['http://localhost:3000'];
 
-app.use(cors({
-  origin: (origin, callback) => {
-    // Allow requests from allowed origins or those without an origin (like Postman)
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      console.error(`CORS error: Origin ${origin} not allowed`);
-      callback(new Error('CORS not allowed'));
-    }
-  },
-  credentials: true, // Allow cookies or credentials
-}));
+app.use(cors());
 
 // Route handlers
 app.use('/api/users', userRoutes);
